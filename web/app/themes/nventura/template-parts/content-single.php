@@ -10,11 +10,11 @@
 
 ?>
 <div style="background-color: #f1f1f1;">
-	<div class="wrapper">
+	<div class="container">
 		<?php nventura_post_thumbnail(); ?>
 	</div>
 </div>
-<div class="wrapper">
+<div class="container">
 	<div class="contenenedor-info">
 
 		<div class="contenido uno">
@@ -86,14 +86,7 @@
 						<?php } ?>
 					</div>
 					<div class="solicita-info">
-						<?php if (isset($ICL_LANGUAGE_CODE)) : ?>
-							<?php if ($ICL_LANGUAGE_CODE == 'en') : ?>
-								<a class="bton" href="/en/contact#formulario-contacte">Request information</a>
-							<?php endif; ?>
-						<?php else : ?>
-							<a class="bton" href="/en/contact#formulario-contacte">Request information</a>
-						<?php endif; ?>
-
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cfModal"><?php echo __("Request information"); ?></button>
 					</div>
 				</div>
 
@@ -198,3 +191,21 @@
 </div>
 
 </div><!-- end wrapper -->
+
+<!-- Modal -->
+<div class="modal fade" id="cfModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"><?php echo __('Contact form'); ?></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<?php echo do_shortcode('[contact-form-7 id="5" title="Contact form"]') ?>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -33,10 +33,10 @@
 
 
 			<div class="branding">
-				<div class="container">
-					<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container-fluid">
+					<nav class="navbar navbar-expand-lg navbar-light p-0">
 
-						<div class="navbar-brand">
+						<div class="navbar-brand p-0">
 							<?php
 							the_custom_logo();
 							?>

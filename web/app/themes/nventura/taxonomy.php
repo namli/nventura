@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying archive pages
  *
@@ -11,14 +12,14 @@ get_header();
 ?>
 
 
-<div class="wrapper">
+<div class="container">
 	<header class="page-header">
 
 		<?php
-		echo '<h1 class="page-title">' . single_cat_title( '', false ) . '</h1>';
+		echo '<h1 class="page-title">' . single_cat_title('', false) . '</h1>';
 
 		//the_archive_title( '<h1 class="page-title">', '</h1>' );
-		the_archive_description( '<div class="archive-description">', '</div>' );
+		the_archive_description('<div class="archive-description">', '</div>');
 		?>
 	</header><!-- .page-header -->
 	<div class="propiedades">
@@ -26,13 +27,13 @@ get_header();
 		<main id="primary" class="site-main">
 
 
-		<?php if ( have_posts() ) : ?>
+			<?php if (have_posts()) : ?>
 
 
-			<div class="contenedor-propiedades">
+				<div class="contenedor-propiedades">
 				<?php
 				/* Start the Loop */
-				while ( have_posts() ) :
+				while (have_posts()) :
 					the_post();
 
 					/*
@@ -40,27 +41,27 @@ get_header();
 					 * If you want to override this in a child theme, then include a file
 					 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
 					 */
-					get_template_part( 'template-parts/content-tax', get_post_type() );
+					get_template_part('template-parts/content-tax', get_post_type());
 
 				endwhile;
 
-					//the_posts_navigation();
+			//the_posts_navigation();
 
 
-				else :
+			else :
 
-					get_template_part( 'template-parts/content', 'none' );
+				get_template_part('template-parts/content', 'none');
 
 
 
-				endif;
+			endif;
 				?>
-			</div>
+				</div>
 
 
 		</main><!-- #main -->
 
-		<?php get_sidebar();?>
+		<?php get_sidebar(); ?>
 
 
 	</div>
@@ -68,8 +69,9 @@ get_header();
 
 </div>
 
-	<?php get_template_part( 'template-parts/cta', 'ven' );
-	echo '<br><br>';
+<?php
+// get_template_part( 'template-parts/cta', 'ven' );
+// echo '<br><br>';
 
 
 

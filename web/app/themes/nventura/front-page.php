@@ -15,69 +15,79 @@
 
 get_header();
 ?>
-<aside class="widget-slide">
-	<?php dynamic_sidebar('slide-home'); ?>
-</aside>
-<div class="tit-principal slide-hr wrapper">
-	<h1><?php the_field('titol_principal'); ?></h1>
-</div>
-<aside class="widget-buscador wrapper-900">
-	<?php dynamic_sidebar('busc-home'); ?>
-</aside>
 
 
-<main id="primary" class="site-main">
-	<div class="intro-home">
-		<h1><?php the_field('novetats') ?></h1>
-		<p class="frase mt-1"><?php the_field('text_novetats') ?></p>
+<main id="primary" class="site-main container">
+	<div class="row">
+		<div class="col-12 col-lg-4">
+			<aside class="filter position-sticky top-0">
+				<div class="psa-buscador">
+					<?php
+
+					echo do_shortcode('[searchandfilter fields="action,zona,types" types="select,select,select" headings="You want?,Zone,Type" submit_label="Search"]');
+					//echo do_shortcode( '[facetwp facet="precio"]' );
+					?>
+					<?php
+					//  echo do_shortcode( '[facetwp facet="operacion"]' );
+					// echo do_shortcode( '[facetwp facet="tipo"]' );
+					//  echo do_shortcode( '[facetwp facet="zona"]' );
+
+					// echo '<div class="busc-preu">';
+					// echo '<h4>' . __('Price', 'nventura') . '</h4>';
+					// echo do_shortcode('[facetwp facet="price"]');
+					// echo '</div>';
+					?>
+				</div>
+				<?php dynamic_sidebar('filter'); ?>
+			</aside>
+		</div>
+		<div class="col-12 col-lg-8">
+			<?php
+			$query = new WP_Query(
+				array(
+					'post_type' => 'property',
+					'nopaging' => true
+				)
+			);
+			if ($query->have_posts()) :
+			?>
+
+
+				<div class="contenedor-propiedades">
+				<?php
+
+				/* Start the Loop */
+				while ($query->have_posts()) :
+					$query->the_post();
+
+					/*
+		 * Include the Post-Type-specific template for the content.
+		 * If you want to override this in a child theme, then include a file
+		 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+		 */
+					get_template_part('template-parts/content-tax', get_post_type());
+
+				endwhile;
+
+			//the_posts_navigation();
+
+
+			else :
+
+				get_template_part('template-parts/content', 'none');
+
+
+
+			endif;
+			wp_reset_postdata();
+				?>
+				</div>
+		</div>
 	</div>
 
-	<div class="wrapper">
-		<!-- Zonas -->
-		<?php if (get_field('zones')) : ?>
-			<div class="contenido-zones">
-				<?php $count = 1; ?>
-				<?php while (has_sub_field('zones')) : ?>
 
-					<div class="imagen-zona post<?php echo $count; ?>">
-						<a href="<?php the_sub_field('url_zona') ?>"><img src="<?php the_sub_field('imatge_zona') ?>">
-							<p><?php the_sub_field('text_zona') ?></p>
-						</a>
-					</div>
-					<?php $count++; ?>
-				<?php endwhile; ?>
-			</div><!-- end contenido zonas -->
-		<?php endif; ?>
-	</div>
 
-	<div class="lloguer-home">
-		<h1><?php the_field('lloguer') ?></h1>
-		<p class="frase mt-1"><?php the_field('text_lloguer') ?></p>
-	</div>
 
-	<div class="wrapper">
-		<!-- Lloguer -->
-		<?php if (get_field('zones_lloguer')) : ?>
-			<div class="contenido-zones-lloguer">
-				<?php $count = 1; ?>
-				<?php while (has_sub_field('zones_lloguer')) : ?>
-
-					<div class="imagen-zona post<?php echo $count; ?>">
-						<a href="<?php the_sub_field('url_zona_lloguer') ?>"><img src="<?php the_sub_field('imatge_zona_lloguer') ?>">
-							<p><?php the_sub_field('text_zona_lloguer') ?></p>
-						</a>
-					</div>
-					<?php $count++; ?>
-				<?php endwhile; ?>
-			</div><!-- end contenido zonas -->
-		<?php endif; ?>
-	</div>
-
-	<?php get_template_part('template-parts/cta', 'ven'); ?>
-
-	<?php get_template_part('template-parts/opinio'); ?>
-
-	<?php get_template_part('template-parts/cta', 'solar'); ?>
 
 
 

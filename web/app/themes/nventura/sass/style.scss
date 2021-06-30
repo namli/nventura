@@ -59,7 +59,7 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-com
  # Base
  --------------------------------------------------------------*/
 
-$enable-responsive-font-sizes: true;
+// $enable-responsive-font-sizes: true;
 $enable-negative-margins: true;
 // $box-shadow: 22px 36px 21px rgba(#867A7A, .40);
 
@@ -74,15 +74,17 @@ $display-font-sizes: (1: 6rem,
 $display-font-weight: 900;
 
 
-$estate-yello: #ff9933;
-
+$estate-yello: #db8822;
+$estate-blue:#18324D;
+// other blue #003366
 $primary: $estate-yello;
-$colors: ("estate-yello": $estate-yello);
+$secondary: $estate-blue;
+$colors: ("estate-yello": $estate-yello, "estate-blue":$estate-blue);
 
 $container-max-widths: (xxl: 1440px,
 );
 
-$theme-colors: ("primary": $primary);
+$theme-colors: ("primary": $primary, "secondary":$secondary);
 
 $font-family-sans-serif: Arial,
 -apple-system,
@@ -100,8 +102,8 @@ sans-serif,
 
 :root {
 	// --color-primario: #00B4C9;
-	// --color-primario: #db8822; - ORIGINAL DAHAB.PRO
-	--color-primario: #ff9933;
+	--color-primario: #db8822; //- ORIGINAL DAHAB.PRO
+	// --color-primario: #ff9933;
 
 
 	--color-gris: #DADADA;
@@ -483,17 +485,17 @@ html {
 
 /* Typography
 --------------------------------------------- */
-body,
-button,
-input,
-select,
-optgroup,
-textarea {
-	color: var(--color-fuente);
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1rem;
-	line-height: 1.5;
-}
+// body,
+// button,
+// input,
+// select,
+// optgroup,
+// textarea {
+// 	color: var(--color-fuente);
+// 	font-family: 'Open Sans', sans-serif;
+// 	font-size: 1rem;
+// 	line-height: 1.5;
+// }
 
 h1,
 h2,
@@ -2404,6 +2406,14 @@ div.intro-quisom div.texto p {
 	flex: 0 0 50%;
 	padding: 0px 1rem;
 	margin: 3rem 0px 1rem;
+
+	&:nth-child(1) {
+		margin-top: 0;
+	}
+
+	&:nth-child(2) {
+		margin-top: 0;
+	}
 }
 
 .ref {
@@ -2507,7 +2517,7 @@ div.intro-quisom div.texto p {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	border-bottom: 1px solid var(--color-primario);
+	border-bottom: 1px solid $secondary;
 	padding: 3rem 0;
 }
 
@@ -2533,7 +2543,7 @@ div.intro-quisom div.texto p {
 }
 
 .precio {
-	color: var(--color-primario);
+	color: $secondary;
 	font-weight: 600;
 	font-size: 1.9rem;
 }
@@ -2603,13 +2613,13 @@ div.intro-quisom div.texto p {
 
 .descripcio,
 .caracteristiques {
-	border-bottom: 1px solid var(--color-primario);
+	border-bottom: 1px solid $secondary;
 	padding-bottom: 3rem;
 	margin-bottom: 2rem;
 }
 
 .map {
-	border-top: 1px solid var(--color-primario);
+	border-top: 1px solid $secondary;
 
 }
 
@@ -2737,7 +2747,7 @@ div.intro-quisom div.texto p {
 .psa-buscador {
 	background-color: #f1f1f1;
 	padding: 2rem;
-	margin-top: 3rem;
+	// margin-top: 3rem;
 }
 
 /* .searchandfilter,
@@ -2819,47 +2829,31 @@ select option {
 	outline: none;
 }
 
-.home .searchandfilter input[type="submit"] {
-	background-color: var(--color-primario);
-	color: #fff;
-	padding: .6rem;
-	line-height: 1;
-	text-align: center;
-	margin: 2rem 0 0 0;
-	width: 100%;
-	height: 44px;
-	border: none;
-	border-radius: 0;
-	cursor: pointer;
-	bottom: 0;
-	position: relative;
-}
-
 .searchandfilter input[type="submit"] {
-	background-color: var(--color-primario);
-	color: #fff;
-	padding: .6rem;
-	line-height: 1;
-	text-align: center;
-	margin: 2rem 0 0 0;
-	width: 100%;
-	height: 44px;
-	border: none;
-	border-radius: 0;
-	cursor: pointer;
-	position: absolute;
-	bottom: 2rem;
-	width: 222px;
+	@extend .btn;
+	@extend .btn-primary;
+	@extend .mt-4;
+	// background-color: var(--color-primario);
+	// color: #fff;
+	// padding: .6rem;
+	// line-height: 1;
+	// text-align: center;
+	// margin: 2rem 0 0 0;
+	// width: 100%;
+	// height: 44px;
+	// border: none;
+	// border-radius: 0;
+	// cursor: pointer;
+	// position: absolute;
+	// bottom: 2rem;
+	// width: 222px;
 }
 
 .facetwp-facet {
 	margin-bottom: 81px;
 }
 
-.searchandfilter input[type="submit"]:hover {
-	background-color: #000;
 
-}
 
 .searchandfilter label {
 	display: block;
@@ -2902,26 +2896,6 @@ select option {
 	justify-content: space-between;
 }
 
-@media only screen and (min-width:768px) {
-	.home .searchandfilter ul {
-		flex-direction: row;
-	}
-}
-
-.home .searchandfilter ul li {
-	flex: 0 0 25%;
-}
-
-.home .searchandfilter {
-	background-color: rgba(0, 0, 0, .5);
-	padding: 2rem;
-	// margin-top: 3rem;
-}
-
-.home .searchandfilter input[type="submit"] {
-	margin: 0;
-}
-
 .home hr {
 	background-color: var(--color-primario);
 	height: 77px;
@@ -2959,7 +2933,7 @@ select option {
 *------------------------------------*/
 .psa-buscador {
 	position: sticky;
-	top: 3rem;
+	// top: 3rem;
 	padding-bottom: 6rem;
 	// position: relative;
 }
@@ -3016,4 +2990,15 @@ select option {
 	text-decoration: none;
 	font-size: 1.5rem;
 	color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: $secondary;
+}
+
+.menu-item.active {
+	a.nav-link {
+		color: $primary;
+		font-weight: bold;
+	}
 }

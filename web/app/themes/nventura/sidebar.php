@@ -22,10 +22,10 @@
         // echo do_shortcode( '[facetwp facet="tipo"]' );
         //  echo do_shortcode( '[facetwp facet="zona"]' );
 
-        echo '<div class="busc-preu">';
-        echo '<h4>' . __('Price', 'nventura') . '</h4>';
-        echo do_shortcode('[facetwp facet="price"]');
-        echo '</div>';
+        // echo '<div class="busc-preu">';
+        // echo '<h4>' . __('Price', 'nventura') . '</h4>';
+        // echo do_shortcode('[facetwp facet="price"]');
+        // echo '</div>';
         ?>
     </div>
 
