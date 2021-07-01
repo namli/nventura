@@ -1,26 +1,77 @@
+
 (function ($) {
   $(document).on('acf-osm-map-create-markers', function (e) {
     // Map and marker data is stored in e.detail
-    var map = e.detail.map;
-    var mapData = e.detail.mapData;
-    mapData.mapMarkers.push({
-      default_label: "45214 Dahab, South Sinai Egypt",
-      label: "45214 Dahab, South Sinai Egypt",
-      lat: 28.5094699,
-      lng: 34.5166399,
+    const map = e.detail.map;
+    const mapData = e.detail.mapData;
+    mapData.mapMarkers = '';
+
+    const bodyClasses = $('body')[0].classList;
+    let currentPostId;
+    bodyClasses.forEach((item) => {
+      if (item.startsWith("postid-")) {
+        currentPostId = item.substring(7);
+      }
     });
 
-    // don't create this marker
-    // if ( something_is_wrong_with( [ map, mapData ] ) ) {
-    //     e.preventDefault();
-    // }
+
+    var estateApi = "/wp-json/rest-for-property/v2/geo/";
+    $.getJSON(estateApi, {
+      format: "json"
+    })
+      .done(function (data) {
+        $.each(data, function (i, item) {
+          if (currentPostId == item.id) {
+            let marker = L.marker([item.geo.markers[0].lat, item.geo.markers[0].lng], {
+              alt: item.title,
+              title: item.title,
+              icon: L.icon({
+                iconUrl: '/app/themes/nventura/images/marker-icon-active.png',
+                iconRetinaUrl: '/app/plugins/acf-openstreetmap-field/assets/css/images/marker-icon-2x.png',
+                shadowUrl: '/app/plugins/acf-openstreetmap-field/assets/css/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                tooltipAnchor: [16, -28],
+                shadowSize: [41, 41]
+              })
+            })
+              .bindPopup(`<div class="card" style="width: 18rem;">
+              <a href="${item.url}"><img src="${item.image}" class="card-img-top" alt="${item.title}"></a>
+              <div class="card-body">
+                <h5 class="card-title"><a href="${item.url}">${item.title}</a></h5>
+                <p class="card-text">${item.description.substring(0, 50) + "..."}</p >
+              </div >
+            </div > `)
+              .addEventListener('mouseover', (item) => {
+                item.target.openPopup();
+              })
+              .addTo(map);
+          } else {
+            let marker = L.marker([item.geo.markers[0].lat, item.geo.markers[0].lng], {
+              alt: item.title,
+              title: item.title,
+            })
+              .bindPopup(`<div class="card" style="width: 18rem;">
+              <a href="${item.url}"><img src="${item.image}" class="card-img-top" alt="${item.title}"></a>
+              <div class="card-body">
+                <h5 class="card-title"><a href="${item.url}">${item.title}</a></h5>
+                <p class="card-text">${item.description.substring(0, 50) + "..."}</p >
+              </div >
+            </div > `)
+              .addEventListener('mouseover', (item) => {
+                item.target.openPopup();
+              })
+              .addTo(map);
+          }
+        });
+      });
+
   });
   $(document).on('acf-osm-map-created', function (e) {
-    let map = e.detail.map;
-    console.log(map);
-    // do something with map 
-    // @see https://leafletjs.com/reference-1.3.2.html#map-setzoom
-    var polygon = L.polygon([
+    const map = e.detail.map;
+
+    const polygon = L.polygon([
       [28.478759175842832, 34.48995744375053],
       [28.48075844029152, 34.489249340570595],
       [28.48043780608841, 34.490515343225624],
@@ -59,12 +110,12 @@
       [28.476821204142333, 34.50159893631643],
       [28.478147472279073, 34.49979859059624],
       [28.479366528107334, 34.49688454466361],
-      [28.479239522079915, 34.493288050698766]
+      [28.479239522079915, 34.493288050698766],
     ], {
       color: '#ff9933',
       fillColor: '#ff9933',
       fillOpacity: 0.5,
-      radius: 500
+      radius: 500,
     }).addTo(map);
 
     // let label = L.

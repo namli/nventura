@@ -9,7 +9,7 @@
  */
 
 ?>
-<div style="background-color: #f1f1f1;">
+<div>
 	<div class="container">
 		<?php nventura_post_thumbnail(); ?>
 	</div>
@@ -165,9 +165,12 @@
 		</article><!-- #post-<?php the_ID(); ?> -->
 
 		<div id="maps" class="container mt-4 pt-4 px-0 map">
-			<div class="row-12">
-				<?php the_field('geo'); ?>
+			<div class="row">
+				<div class="col-12">
+					<?php the_field('geo'); ?>
+				</div>
 			</div>
+			.
 		</div> <!-- Map -->
 	</div><!-- contenedor descripcio -->
 </div><!-- descripcio -->

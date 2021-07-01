@@ -375,5 +375,22 @@ if (!function_exists('AddThumbColumn') && function_exists('add_theme_support')) 
 add_filter('manage_propietat_posts_columns', 'AddThumbColumn');
 add_action('manage_propietat_posts_custom_column', 'AddThumbValue', 10, 2);
 
+// add this to functions.php
+//register acf fields to Wordpress API
+//https://support.advancedcustomfields.com/forums/topic/json-rest-api-and-acf/
+
+function acf_to_rest_api($response, $post, $request)
+{
+	if (!function_exists('get_fields')) return $response;
+
+	if (isset($post)) {
+		$acf = get_fields($post->id);
+		$response->data['acf'] = $acf;
+	}
+	return $response;
+}
+add_filter('rest_prepare_property', 'acf_to_rest_api', 10, 3);
+
 
 add_image_size('nv-340x340', 340, 340, true);
+add_image_size('nv-340x340-nc', 340, 340, false);
