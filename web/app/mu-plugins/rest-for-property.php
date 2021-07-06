@@ -34,7 +34,12 @@ function property_geo($data)
     $outpost->url = get_permalink();
     $outpost->image = get_the_post_thumbnail_url(get_the_ID(), 'nv-340x340-nc');
     $outpost->description = get_the_content();
+    $outpost->type = wp_get_post_terms(get_the_ID(), 'proptypes')[0];
+    $outpost->action = wp_get_post_terms(get_the_ID(), 'action')[0];
+    $outpost->zona = wp_get_post_terms(get_the_ID(), 'zona')[0];
+    $outpost->price = get_field('preu');
     $outpost->geo = get_post_meta(get_the_ID(), 'geo', true);
+
 
     $out[] = $outpost;
 

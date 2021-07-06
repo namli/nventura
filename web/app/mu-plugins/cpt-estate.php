@@ -70,6 +70,7 @@ function crear_post_type_propietat()
 }
 
 // **********************CREAMOS TAXONOMIA TIPUS
+
 add_action('init', 'taxonomia_tipus');
 
 function taxonomia_tipus()
@@ -94,11 +95,11 @@ function taxonomia_tipus()
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
-		'rewrite' => array('slug' => 'types'),
-		'taxonomies'            => array('category', 'post_tag'),
+		'show_in_rest' => true,
+		'rewrite' => array('slug' => 'proptypes')
 	);
 
-	register_taxonomy('types', array('property'), $args);
+	register_taxonomy('proptypes', array('property'), $args);
 }
 
 
@@ -128,7 +129,8 @@ function taxonomia_accio()
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
-		'rewrite' => array('slug' => 'action'),
+		'show_in_rest' => true,
+		'rewrite' => array('slug' => 'action')
 	);
 
 	register_taxonomy('action', array('property'), $args);
@@ -159,6 +161,7 @@ function taxonomia_caracteristiques()
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
+		'show_in_rest' => true,
 		'rewrite' => array('slug' => 'characteristic'),
 	);
 
@@ -222,6 +225,7 @@ function taxonomia_habitacions()
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
+		'show_in_rest' => true,
 		'rewrite' => array('slug' => 'rooms'),
 	);
 
@@ -252,6 +256,7 @@ function taxonomia_referencia()
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
+		'show_in_rest' => true,
 		'rewrite' => array('slug' => 'referencia'),
 	);
 
@@ -273,6 +278,7 @@ function taxonomia_precio()
 		'update_item'       => __('Update Price'),
 		'add_new_item'      => __('Add Price'),
 		'new_item_name'     => __('New Price'),
+		'show_in_rest' => true,
 		'menu_name'         => __('Prices'),
 	);
 

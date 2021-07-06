@@ -21,6 +21,12 @@
     })
       .done(function (data) {
         $.each(data, function (i, item) {
+
+
+
+
+
+
           if (currentPostId == item.id) {
             let marker = L.marker([item.geo.markers[0].lat, item.geo.markers[0].lng], {
               alt: item.title,
@@ -36,10 +42,16 @@
                 shadowSize: [41, 41]
               })
             })
-              .bindPopup(`<div class="card" style="width: 18rem;">
+              .bindPopup(`<div class="card map-card border-0" style="width: 18rem;">
               <a href="${item.url}"><img src="${item.image}" class="card-img-top" alt="${item.title}"></a>
               <div class="card-body">
                 <h5 class="card-title"><a href="${item.url}">${item.title}</a></h5>
+                <div class="price text-secondary">${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} €</div>
+                <ul class="addinfo d-flex p-0 m-0">
+                  <li>${item.type.name} | </li>
+                  <li>${item.action.name} | </li>
+                  <li>${item.zona.name}</li>
+                </ul>
                 <p class="card-text">${item.description.substring(0, 50) + "..."}</p >
               </div >
             </div > `)
@@ -52,10 +64,16 @@
               alt: item.title,
               title: item.title,
             })
-              .bindPopup(`<div class="card" style="width: 18rem;">
+              .bindPopup(`<div class="card map-card border-0" style="width: 18rem;">
               <a href="${item.url}"><img src="${item.image}" class="card-img-top" alt="${item.title}"></a>
               <div class="card-body">
                 <h5 class="card-title"><a href="${item.url}">${item.title}</a></h5>
+                <div class="price text-secondary">${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} €</div>
+                <ul class="addinfo d-flex p-0 m-0">
+                  <li>${item.type.name} | </li>
+                  <li>${item.action.name} | </li>
+                  <li>${item.zona.name}</li>
+                </ul>
                 <p class="card-text">${item.description.substring(0, 50) + "..."}</p >
               </div >
             </div > `)

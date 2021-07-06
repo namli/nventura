@@ -2655,3 +2655,49 @@ select option {
 	@extend .btn;
 	@extend .btn-primary;
 }
+
+.map-card {
+	.price {
+		font-weight: bold !important;
+	}
+
+	ul {
+		li {
+			list-style: none;
+			margin-left: .3em;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+.leaflet-container {
+	font-size: .865rem !important;
+	font-family: Arial, Helvetica, sans-serif !important;
+
+}
+
+.front-map {
+	height: 80vh;
+}
+
+.mapboxgl-marker {
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	border: 1px solid $secondary;
+	background-color: $primary;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0 0 8px $secondary !important;
+
+	}
+
+}
+
+.mapboxgl-marker.current {
+	background-color: red;
+}

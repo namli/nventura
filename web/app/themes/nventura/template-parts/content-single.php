@@ -36,7 +36,7 @@
 			<div class="taxonomia">
 				<!-- taxonomia sin enlace -->
 				<?php
-				$b = get_the_term_list($post->ID, 'types');
+				$b = get_the_term_list($post->ID, 'proptypes');
 				$b = strip_tags($b);
 				echo "<p class='fuente1'>" . $b . "</p>";
 				?>
@@ -167,10 +167,9 @@
 		<div id="maps" class="container mt-4 pt-4 px-0 map">
 			<div class="row">
 				<div class="col-12">
-					<?php the_field('geo'); ?>
+					<div id="map-box" class="col-12 front-map mb-2"></div>
 				</div>
 			</div>
-			.
 		</div> <!-- Map -->
 	</div><!-- contenedor descripcio -->
 </div><!-- descripcio -->

@@ -236,22 +236,37 @@ add_action('widgets_init', 'nventura_widgets_init');
  */
 function nventura_scripts()
 {
-
+	global $post;
 	// wp_enqueue_style('bootstrap-grid', get_template_directory_uri() . '/css/bootstrap-grid.min.css', array());
 	wp_enqueue_style('fancybox', get_template_directory_uri() . '/css/jquery.fancybox.min.css', array());
 	wp_style_add_data('nventura-style', 'rtl', 'replace');
 	wp_enqueue_style('nventura-style', get_stylesheet_uri(), array());
-	wp_enqueue_script('bootstrap', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array('jquery'), _S_VERSION);
+	wp_enqueue_script('bootstrap', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array('jquery'), _S_VERSION, true);
 	// wp_enqueue_script('nventura-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
 	wp_enqueue_script('myjs', get_template_directory_uri() . '/js/jquery.bxslider.js', array('jquery'), 4.2, true);
-	wp_enqueue_script('bxSlideer', get_template_directory_uri() . '/js/myjquery.js', array('jquery'), true);
-	wp_enqueue_script('fancybox', get_template_directory_uri() . '/js/jquery.fancybox.min.js', array('jquery'), true);
-	wp_enqueue_script('map', get_template_directory_uri() . '/js/map.js', array('jquery'), true);
+	wp_enqueue_script('bxSlideer', get_template_directory_uri() . '/js/myjquery.js', array('jquery'), _S_VERSION, true);
+	wp_enqueue_script('fancybox', get_template_directory_uri() . '/js/jquery.fancybox.min.js', array('jquery'), _S_VERSION, true);
+	//wp_enqueue_script('map', get_template_directory_uri() . '/js/map.js', array('jquery'), _S_VERSION, true);
 
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
+
+	if ($post->ID == 201) {
+
+		wp_enqueue_script('mapbox', 'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js', array('jquery'), _S_VERSION, true);
+		wp_enqueue_style('mapbox', 'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css', array());
+		wp_enqueue_script('map-front', get_template_directory_uri() . '/js/map-front.js', array('mapbox'), _S_VERSION, true);
+	}
+
+	if (is_singular('property')) {
+
+		wp_enqueue_script('mapbox', 'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js', array('jquery'), _S_VERSION, true);
+		wp_enqueue_style('mapbox', 'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css', array());
+		wp_enqueue_script('map', get_template_directory_uri() . '/js/map-mapbox.js', array('jquery'), _S_VERSION, true);
+	}
+
 	wp_enqueue_style('fuentes-google', 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap', array());
 }
 add_action('wp_enqueue_scripts', 'nventura_scripts');
