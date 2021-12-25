@@ -21,6 +21,8 @@ web/.htaccess
 # Composer
 /vendor
 
+/.vscode/sftp*
+
 # WP-CLI
 wp-cli.local.yml
 

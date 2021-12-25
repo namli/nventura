@@ -45,7 +45,7 @@ function crear_post_type_propietat()
 		'description'         => __('Property description', 'estate'),
 		'labels'              => $labels,
 		// Todo lo que soporta este post type
-		'supports'            => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions',),
+		'supports'            => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'author'),
 		/* Un Post Type hierarchical es como las paginas y puede tener padres e hijos.
 			* Uno sin hierarchical es como los posts
 			*/
@@ -62,11 +62,130 @@ function crear_post_type_propietat()
 		'has_archive'         => true,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'page',
+		'capability_type'     => 'post',
+		'capabilities' => array(
+			'edit_post' => 'edit_property',
+			'edit_posts' => 'edit_properties',
+			'edit_others_posts' => 'edit_other_properties',
+			'edit_published_posts' => 'Edit Published property',
+			'publish_posts' => 'publish_properties',
+			'read_post' => 'read_property',
+			'read_private_posts' => 'read_private_properties',
+			'delete_post' => 'delete_property',
+			'delete_published_posts' => 'Delete Published Properties',
+			'delete_others_posts' => 'Delete Other Properties',
+			'create_posts' => 'create_property'
+		),
+		// as pointed out by iEmanuele, adding map_meta_cap will map the meta correctly 
+		'map_meta_cap' => true
 	);
 
 	// Por ultimo registramos el post type
 	register_post_type('property', $args);
+}
+
+// ********************************************************
+// ****************** - Агенство \\ Специалист ********************
+// ********************************************************
+add_action('init', 'create_post_type_agency', 0);
+
+function create_post_type_agency()
+{
+
+	// Etiquetas para el Post Type
+	$labels = array(
+		'name'                => _x('Agency', 'Post Type General Name', 'estate'),
+		'singular_name'       => _x('Agency', 'Post Type Singular Name', 'estate'),
+		'menu_name'           => __('Agency', 'estate'),
+		'parent_item_colon'   => __('Agency parent', 'estate'),
+		'all_items'           => __('All Agencies', 'estate'),
+		'view_item'           => __('View Agency', 'estate'),
+		'add_new_item'        => __('Add new Agency', 'estate'),
+		'add_new'             => __('Add new Agency', 'estate'),
+		'edit_item'           => __('Edit Agency', 'estate'),
+		'update_item'         => __('Update Agency', 'estate'),
+		'search_items'        => __('Search Agency', 'estate'),
+		'not_found'           => __('Not found', 'estate'),
+		'not_found_in_trash'  => __('Not found in trash', 'estate'),
+	);
+
+	// Otras opciones para el post type
+
+	$args = array(
+		'label'               => __('agency', 'estate'),
+		'description'         => __('Agency description', 'estate'),
+		'labels'              => $labels,
+		// Todo lo que soporta este post type
+		'supports'            => array('title', 'thumbnail', 'revisions', 'author'),
+		/* Un Post Type hierarchical es como las paginas y puede tener padres e hijos.
+			* Uno sin hierarchical es como los posts
+			*/
+		'hierarchical'        => false,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'show_in_nav_menus'   => true,
+		'show_in_rest'        => true,
+		'show_in_admin_bar'   => true,
+		'menu_position'       => 5,
+		'menu_icon'           => 'dashicons-welcome-learn-more',
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'post',
+		'capabilities' => array(
+			'edit_post' => 'edit_agency',
+			'edit_posts' => 'edit_agencies',
+			'edit_others_posts' => 'edit_other_agencies',
+			'edit_published_posts' => 'Edit Published Agency',
+			'publish_posts' => 'publish_agencies',
+			'read_post' => 'read_agency',
+			'read_private_posts' => 'read_private_agencies',
+			'delete_post' => 'delete_agency',
+			'delete_published_posts' => 'Delete Published Agency',
+			'delete_others_posts' => 'Delete Other Agency',
+			'create_posts' => 'create_agency'
+		),
+		// as pointed out by iEmanuele, adding map_meta_cap will map the meta correctly 
+		'map_meta_cap' => true
+	);
+
+	// Por ultimo registramos el post type
+	register_post_type('agency', $args);
+}
+
+// ********************** Типы агенств
+
+add_action('init', 'taxonomia_agent_types');
+
+function taxonomia_agent_types()
+{
+	$labels = array(
+		'name'              => _x('Types', 'taxonomy general name'),
+		'singular_name'     => _x('Type', 'taxonomy singular name'),
+		'search_items'      => __('Search Type of agency'),
+		'all_items'         => __('All Types', 'estate'),
+		'parent_item'       => __('Types'),
+		'parent_item_colon' => __('Types pare:'),
+		'edit_item'         => __('Edit types of agency'),
+		'update_item'       => __('Update types of agency'),
+		'add_new_item'      => __('Add new types agency'),
+		'new_item_name'     => __('New type of agency'),
+		'menu_name'         => __('Agency types'),
+	);
+
+	$args = array(
+		'hierarchical'      => true,
+		'labels'            => $labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'show_in_rest' => true,
+		'rewrite' => array('slug' => 'agtypes')
+	);
+
+	register_taxonomy('agtypes', array('agency'), $args);
 }
 
 // **********************CREAMOS TAXONOMIA TIPUS
@@ -262,6 +381,7 @@ function taxonomia_referencia()
 
 	register_taxonomy('referencia', array('property'), $args);
 }
+
 // ***************CREAMOS TAXONOMIA habitacions
 add_action('init', 'taxonomia_precio');
 

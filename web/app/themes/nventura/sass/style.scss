@@ -2165,7 +2165,6 @@ div.intro-quisom div.texto p {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	border-bottom: 1px solid $secondary;
 	padding: 3rem 0;
 }
 
@@ -2259,17 +2258,6 @@ div.intro-quisom div.texto p {
 	vertical-align: sub;
 }
 
-.descripcio,
-.caracteristiques {
-	border-bottom: 1px solid $secondary;
-	padding-bottom: 3rem;
-	margin-bottom: 2rem;
-}
-
-.map {
-	border-top: 1px solid $secondary;
-
-}
 
 .caracteristiques {
 	margin-bottom: 3rem;

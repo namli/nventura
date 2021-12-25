@@ -343,6 +343,10 @@ function psa_desactivar_editor_gb_pantalla_completa_por_default()
 	wp_add_inline_script('wp-blocks', $script);
 }
 add_action('enqueue_block_editor_assets', 'psa_desactivar_editor_gb_pantalla_completa_por_default');
+
+
+
+
 /*------------------------------------*
 Mostrar miniatura
 *------------------------------------*/
@@ -409,3 +413,39 @@ add_filter('rest_prepare_property', 'acf_to_rest_api', 10, 3);
 
 add_image_size('nv-340x340', 340, 340, true);
 add_image_size('nv-340x340-nc', 340, 340, false);
+add_image_size('nv-thrid-screen-3x4', 480, 640, true);
+
+
+
+
+/**
+ * Favorite system
+ * 
+ */
+
+
+
+/**
+ * Customize the Favorites Button HTML
+ */
+add_filter('favorites/button/html', 'custom_favorites_button_html', 10, 4);
+function custom_favorites_button_html($html, $post_id, $favorited, $site_id)
+{
+	if ($favorited) {
+		$html = '<i class="fav-icon"><svg width="1rem" height="1rem" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 312.746 312.746" style="enable-background:new 0 0 312.746 312.746;" xml:space="preserve"><path style="fill:#db8822;" d="M40.347,0v312.452l117.734-120.247l114.318,120.541V0H40.347z"/></svg></i>';
+	} else {
+		$html = '<i class="fav-icon"><svg width="1rem" height="1rem" viewBox="0 0 52 52" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><path d="M43.62,52a2,2,0,0,1-1.09-.33L26,40.83,9.47,51.67a2,2,0,0,1-2,.09,2,2,0,0,1-1-1.76V2a2,2,0,0,1,2-2H43.62a2,2,0,0,1,2,2V50a2,2,0,0,1-1,1.76A2,2,0,0,1,43.62,52ZM26,36.44a2.1,2.1,0,0,1,1.1.32L41.62,46.3V4H10.38V46.3L24.9,36.76A2.1,2.1,0,0,1,26,36.44Z"/></svg></i>';
+	}
+
+	return $html;
+}
+
+/**
+ * Customize the Favorites Button CSS Classes
+ */
+add_filter('favorites/button/css_classes', 'custom_favorites_button_css_classes', 10, 3);
+function custom_favorites_button_css_classes($classes, $post_id, $site_id)
+{
+	$classes .= ' btn';
+	return $classes;
+}

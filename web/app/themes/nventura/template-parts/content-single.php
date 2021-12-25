@@ -97,14 +97,20 @@
 
 
 
-
+	<hr class="bg-secondary">
 	<div class="descripcio">
 		<div class="contenedor-descripcio">
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<div class="row">
 					<div class="entry-content col-12 col-md-7">
-						<h2><?php _e('Property description', 'nventura'); ?></h2>
+						<div class="d-flex justify-content-between">
+							<h2><?php _e('Property description', 'nventura'); ?></h2>
+							<div class="add-to-favorite">
+								<?php the_favorites_button(); ?>
+							</div>
+						</div>
+
 						<?php
 						the_content(
 							sprintf(
@@ -162,8 +168,29 @@
 				</div>
 			<?php endif; ?>
 		</div><!-- .row -->
-		</article><!-- #post-<?php the_ID(); ?> -->
 
+		<hr class="bg-secondary">
+
+
+		<div class="caracteristiques">
+			<h2><?php _e('Characteristics', 'nventura'); ?></h2>
+
+			<?php
+			//the_terms($post->ID, 'caracteristica', '<li>','','</li>');
+
+			$caracteristicas = get_the_terms($post->ID, 'characteristic');
+			?>
+			<ul>
+				<?php
+				foreach ($caracteristicas as $value) {
+					echo '<li>' . $value->name . '</li>';
+				}
+				?>
+			</ul>
+
+		</div>
+		</article><!-- #post-<?php the_ID(); ?> -->
+		<hr class="bg-secondary">
 		<div id="maps" class="container mt-4 pt-4 px-0 map">
 			<div class="row">
 				<div class="col-12">
@@ -174,23 +201,7 @@
 	</div><!-- contenedor descripcio -->
 </div><!-- descripcio -->
 
-<div class="caracteristiques">
-	<h2><?php _e('Characteristics', 'nventura'); ?></h2>
 
-	<?php
-	//the_terms($post->ID, 'caracteristica', '<li>','','</li>');
-
-	$caracteristicas = get_the_terms($post->ID, 'characteristic');
-	?>
-	<ul>
-		<?php
-		foreach ($caracteristicas as $value) {
-			echo '<li>' . $value->name . '</li>';
-		}
-		?>
-	</ul>
-
-</div>
 
 </div><!-- end wrapper -->
 

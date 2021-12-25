@@ -49,7 +49,9 @@
     "roots/wp-password-bcrypt": "1.0.0",
     "wpackagist-plugin/query-monitor": "^3.7",
     "wpackagist-plugin/machete": "^3.5",
-    "wpackagist-plugin/classic-editor": "^1.6"
+    "wpackagist-plugin/classic-editor": "^1.6",
+    "wpackagist-plugin/favorites": "^2.3",
+    "wpackagist-plugin/members": "^3.1"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.6.0",
