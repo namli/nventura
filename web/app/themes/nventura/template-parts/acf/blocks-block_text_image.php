@@ -12,11 +12,11 @@ $image = get_sub_field('block_text_image_image');
 <section class="fdb-block my-4 container">
   <div class="row">
     <?php if (get_sub_field('block_text_image_titile')) { ?>
-      <h2 class="mb-2 display-4 col-12"><?php the_sub_field('block_text_image_titile'); ?></h2>
+      <h2 class="h2"><?php the_sub_field('block_text_image_titile'); ?></h2>
     <?php } ?>
 
     <?php if (get_sub_field('block_text_image_subtitle')) { ?>
-      <h3 class="col-12 pb-2 text-muted"><?php the_sub_field('block_text_image_subtitle'); ?></h3>
+      <h3 class="h5 text-muted"><?php the_sub_field('block_text_image_subtitle'); ?></h3>
     <?php } ?>
   </div>
   <div class="row">
