@@ -10,17 +10,18 @@
 
 <section class="fdb-block my-4 container">
   <div class="row front_list_w_i my-4">
+    <div class="col-12">
+      <?php if (get_sub_field('block_header_title')) { ?>
+        <h1 class="h1"><?php the_sub_field('block_header_title'); ?></h1>
+      <?php } ?>
 
-    <?php if (get_sub_field('block_header_title')) { ?>
-      <h1 class="h1"><?php the_sub_field('block_header_title'); ?></h1>
-    <?php } ?>
+      <?php if (get_sub_field('block_header_subtitle')) { ?>
+        <h5 class="h5 text-muted"><?php the_sub_field('block_header_subtitle'); ?></h5>
+      <?php } ?>
 
-    <?php if (get_sub_field('block_header_subtitle')) { ?>
-      <h5 class="h5 text-muted"><?php the_sub_field('block_header_subtitle'); ?></h5>
-    <?php } ?>
-
-    <?php if (get_sub_field('block_header_text')) { ?>
-      <div class=""><?php the_sub_field('block_header_text'); ?></div>
-    <?php } ?>
+      <?php if (get_sub_field('block_header_text')) { ?>
+        <div class=""><?php the_sub_field('block_header_text'); ?></div>
+      <?php } ?>
+    </div>
   </div>
 </section>

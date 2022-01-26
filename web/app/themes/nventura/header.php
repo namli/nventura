@@ -66,6 +66,7 @@
 								'walker'            => new WP_Bootstrap_Navwalker(),
 							));
 							?>
+							<?php dynamic_sidebar('idiomas'); ?>
 						</div>
 						<div class="fav-list"><?php echo get_user_favorites_count($user_id = null, $site_id = null, $filters = null, $html = false); ?></div>
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
