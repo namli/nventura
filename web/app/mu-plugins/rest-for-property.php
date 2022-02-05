@@ -1,4 +1,7 @@
 <?php
+
+use function Env\env;
+
 if (!defined('ABSPATH')) {
   die('FU!');
 }

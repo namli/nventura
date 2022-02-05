@@ -8,7 +8,7 @@
 ?>
 
 
-<section class="fdb-block my-4 container">
+<section class="fdb-block my-4 px-4 px-md-3 container">
   <div class="row front_list_w_i my-4">
     <div class="col-12">
       <?php if (get_sub_field('block_header_title')) { ?>

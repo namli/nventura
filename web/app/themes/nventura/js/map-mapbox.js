@@ -21,7 +21,8 @@
   });
 
   map.on('load', function () {
-    var estateApi = "/wp-json/rest-for-property/v2/geo/";
+    const lang = (document.getElementsByTagName("html")[0].getAttribute("lang").substring(0, 2) === 'en') ? '' : '/ru';
+    var estateApi = lang + "/wp-json/rest-for-property/v2/geo/";
     $.getJSON(estateApi, {
       format: "json"
     })

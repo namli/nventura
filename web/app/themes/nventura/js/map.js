@@ -14,19 +14,11 @@
       }
     });
 
-
-    var estateApi = "/wp-json/rest-for-property/v2/geo/";
     $.getJSON(estateApi, {
       format: "json"
     })
       .done(function (data) {
         $.each(data, function (i, item) {
-
-
-
-
-
-
           if (currentPostId == item.id) {
             let marker = L.marker([item.geo.markers[0].lat, item.geo.markers[0].lng], {
               alt: item.title,

@@ -260,6 +260,13 @@ function nventura_scripts()
 		wp_enqueue_script('map-front', get_template_directory_uri() . '/js/map-front.js', array('mapbox'), _S_VERSION, true);
 	}
 
+	if ($post->ID == 469) {
+
+		wp_enqueue_script('mapbox', 'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js', array('jquery'), _S_VERSION, true);
+		wp_enqueue_style('mapbox', 'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css', array());
+		wp_enqueue_script('map-front', get_template_directory_uri() . '/js/map-front.js', array('mapbox'), _S_VERSION, true);
+	}
+
 	if (is_singular('property')) {
 
 		wp_enqueue_script('mapbox', 'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js', array('jquery'), _S_VERSION, true);

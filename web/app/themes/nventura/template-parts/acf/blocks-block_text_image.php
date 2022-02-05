@@ -9,7 +9,7 @@
 <?php
 $image = get_sub_field('block_text_image_image');
 ?>
-<section class="fdb-block my-4 container">
+<section class="fdb-block my-4 px-4 px-md-3 container">
   <div class="row">
     <div class="col-12">
       <?php if (get_sub_field('block_text_image_titile')) { ?>

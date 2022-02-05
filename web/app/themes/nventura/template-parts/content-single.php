@@ -23,7 +23,7 @@
 				<?php
 				$fmt = numfmt_create('de_DE', NumberFormatter::CURRENCY);
 				$precio = get_field('preu');
-				echo numfmt_format_currency($fmt, $precio, "EUR");
+				echo numfmt_format_currency($fmt, $precio, "EGP");
 				// setlocale(LC_MONETARY, 'de_DE.utf8');
 				// $precio = get_field('preu');
 				// echo money_format('%.0n', $precio,);
