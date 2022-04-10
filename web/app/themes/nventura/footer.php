@@ -30,10 +30,6 @@
 				<?php dynamic_sidebar('enlaces'); ?>
 			</div>
 			<div class="social">
-				<div class="contenedor-redes">
-					<h4><?php _e('Folow as', 'nventura'); ?></h4>
-					<?php get_template_part('template-parts/redes'); ?>
-				</div>
 				<div class="newsletter">
 					<?php dynamic_sidebar('footer4'); ?>
 				</div>

@@ -456,3 +456,27 @@ function custom_favorites_button_css_classes($classes, $post_id, $site_id)
 	$classes .= ' btn';
 	return $classes;
 }
+
+/**
+ * inuque id autogen
+ */
+function custom_create_unique_id_acf_field( $value, $post_id, $field ) {
+	if (empty( $value )) {
+		$uniqueid_length	= 8; 
+		$uniqueid			= crypt(uniqid(rand(),1)); 
+		$uniqueid			= strip_tags(stripslashes($uniqueid)); 
+		$uniqueid			= str_replace(".","",$uniqueid); 
+		$uniqueid			= strrev(str_replace("/","",$uniqueid)); 
+		$uniqueid			= substr($uniqueid,0,$uniqueid_length);
+		$uniqueid			= strtoupper($uniqueid);
+
+		$title = 'P-' . $uniqueid;
+
+		return $title;
+	} else {
+		return $value;
+	}
+	
+
+}
+add_filter('acf/load_value/name=referencia', 'custom_create_unique_id_acf_field', 10, 3);

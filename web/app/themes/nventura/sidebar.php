@@ -14,7 +14,7 @@
     <div class="psa-buscador">
         <?php
 
-        echo do_shortcode('[searchandfilter fields="action,zona,types" types="select,select,select" headings="You want?,Zone,Type" submit_label="Search"]');
+       //echo do_shortcode('[searchandfilter fields="action,zona,types" types="select,select,select" headings="You want?,Zone,Type" submit_label="Search"]');
         //echo do_shortcode( '[facetwp facet="precio"]' );
         ?>
         <?php
@@ -26,7 +26,9 @@
         // echo '<h4>' . __('Price', 'nventura') . '</h4>';
         // echo do_shortcode('[facetwp facet="price"]');
         // echo '</div>';
+        
         ?>
+<?php dynamic_sidebar('busc-home'); ?>
     </div>
 
 

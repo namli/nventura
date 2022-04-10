@@ -19,6 +19,7 @@
       format: "json"
     })
       .done(function (data) {
+        console.log(data);
         $.each(data, function (i, item) {
           var el = document.createElement('div');
           var popup = new mapboxgl.Popup({ offset: 15, maxWidth: '18rem' }).setHTML(
@@ -26,9 +27,8 @@
             <a href="${item.url}"><img src="${item.image}" class="card-img-top" alt="${item.title}"></a>
             <div class="card-body">
               <h5 class="card-title"><a href="${item.url}">${item.title}</a></h5>
-              <div class="price text-secondary">${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} €</div>
+              <div class="price text-secondary">${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} GBR</div>
               <ul class="addinfo d-flex p-0 m-0">
-                <li>${item.action.name} | </li>
                 <li>${item.type.name} | </li>
                 <li>${item.zona.name}</li>
               </ul>

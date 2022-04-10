@@ -33,7 +33,7 @@ get_header();
 					<div class="psa-buscador">
 						<?php
 
-						echo do_shortcode('[searchandfilter fields="action,zona,proptypes" types="select,select,select" headings="You want?,Zone,Type" submit_label="Search"]');
+						//echo do_shortcode('[searchandfilter fields="action,zona,proptypes" types="select,select,select" headings="You want?,Zone,Type" submit_label="Search"]');
 						//echo do_shortcode( '[facetwp facet="precio"]' );
 						?>
 						<?php
@@ -46,8 +46,9 @@ get_header();
 						// echo do_shortcode('[facetwp facet="price"]');
 						// echo '</div>';
 						?>
+						<?php dynamic_sidebar('busc-home'); ?>
 					</div>
-					<?php dynamic_sidebar('filter'); ?>
+					
 				</aside>
 			</div>
 			<div class="col-12 col-lg-8">
@@ -62,7 +63,7 @@ get_header();
 				?>
 
 
-					<div class="contenedor-propiedades">
+					<div class="item-list row">
 					<?php
 
 					/* Start the Loop */
@@ -74,7 +75,7 @@ get_header();
 		 * If you want to override this in a child theme, then include a file
 		 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
 		 */
-						get_template_part('template-parts/content-tax', get_post_type());
+						get_template_part('template-parts/content-property-tax');
 
 					endwhile;
 
